@@ -73,3 +73,4 @@ if(XS>=ResX){
     XS=0
     }
 if(!(Y>=ResY)){    setName("PowerBuxoK's Image Writer - writed!; image data: "+"ResX = "+ResX+" RexY = "+ResY)    timer("dd",40)     XS=0 Y=0}}
+#[By PowerBuxoK]#
