@@ -13,7 +13,7 @@ if(first()){
     ResY=16
     Speed=32
     ##Options##
-    URL="https://powerbuxokshost.000webhostapp.com/"
+    URL=""#your URL to php
     ###########
 ##Funcs##
 function wirelink:initScr (ResX,ResY){
