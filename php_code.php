@@ -24,8 +24,8 @@ for($y=0;$y<$height;$y++) {
 
         // Write colors in digital screen's format of 'RRRGGGBBB'
         $str .= sprintf('%03d%03d%03d',$r,$g,$b);
-//        $str .= ' ';
     }
 }
 echo $str;
+//Copyright (c) 2021 PowerBuxoK//
 ?>
