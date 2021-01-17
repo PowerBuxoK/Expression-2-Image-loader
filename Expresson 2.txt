@@ -12,7 +12,7 @@ if(first()){
     ResX=512
     ResY=512
     Speed=128
-    URL=""
+    URL=""##URL to PHP
     Scr=entity():isWeldedTo():wirelink()
     
 ##Funcs##
@@ -54,7 +54,7 @@ print("No DIGI screen")
 if(httpClk()){
     ColSToObr = httpData():right(httpData():length()-httpData():left(16):explode(";")[1,string]:length()-1)
     if(httpData():left(32):lower():find("error")|httpData():left(32):lower():find("warning")){Err=httpData():replace("<b>",""):replace("</b>",""):replace("<br />",""):explode("\n") foreach(I,Str:string=Err){print(Str)}}else{
-    print("[c 150 , 150 , 150]PowerBuxoK's Image Writer[/c] - [c 255 , 0 , 0]writing...[/c]; image data: "+"ResX = "+ResX+" RexY = "+ResY)
+    print("PowerBuxoK's Image Writer - writing...; image data: "+"ResX = "+ResX+" RexY = "+ResY)
     setName("PowerBuxoK's Image Writer - writing...; image data: "+"ResX = "+ResX+" RexY = "+ResY)
     Scr:initScr(max(ResX,ResY),max(ResX,ResY))
     print("Filling "+ResX*ResY+" pixels")
