@@ -1,7 +1,7 @@
 @name PowerBuxoK's Image Writer
 @inputs 
 @outputs ResX ResY XS Y
-@persist ColSToObr:string HTTP:string E Scr:wirelink ResX ResY Dodounawteway Speed
+@persist ColSToObr:string [URL HTTP]:string E Scr:wirelink ResX ResY Dodounawteway Speed
 @trigger 
 
 interval(20)
@@ -12,11 +12,9 @@ if(first()){
     ResX=512
     ResY=512
     Speed=128
+    URL=""
     Scr=entity():isWeldedTo():wirelink()
-#    HTTP="https://i.postimg.cc/fySQgN5s/f56108e788560d9d7f9b6b2ff2c78f2e.png"#/Жон,Жын,Жын Бурляй
-#    HTTP="https://i.postimg.cc/8z0393JP/eb5caf0ad880b03bf8082da3ee2e718a.png"#/L8'n
-#    HTTP="https://i.postimg.cc/wTkyvjWG/e6c251abe9c6a6a3a02b604727804a85.png"#/Mananox
-#    HTTP="https://i.postimg.cc/fLCmV4hx/imgonline-com-ua-Resize-6cra-VJ58o5.jpg"#/Vzlom Jopi
+    
 ##Funcs##
 function wirelink:initScr (ResX,ResY){
 This[1048574]=0
@@ -44,8 +42,8 @@ if(HTTP!=""&&(owner():aimEntity():type()=="gmod_wire_digitalscreen")&&chatClk(ow
 if(owner():aimEntity():type()=="gmod_wire_digitalscreen"){
 Scr=owner():aimEntity():wirelink()
 }
-httpRequest("https://powerbuxokshost.000webhostapp.com/?img="+HTTP+"&res="+ResX+"x"+ResY)
-print("Requesting to "+"https://powerbuxokshost.000webhostapp.com/?img="+HTTP+"&res="+ResX+"x"+ResY)
+httpRequest(URL+"?img="+HTTP+"&res="+ResX+"x"+ResY)
+print("Requesting to "+URL+"?img="+HTTP+"&res="+ResX+"x"+ResY)
 E=0
 XS=0
 Y=0
