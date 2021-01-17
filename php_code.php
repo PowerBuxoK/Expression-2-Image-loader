@@ -27,5 +27,5 @@ for($y=0;$y<$height;$y++) {
     }
 }
 echo $str;
-//Copyright (c) 2021 PowerBuxoK//
+//[Copyright (c) 2021 PowerBuxoK]//
 ?>
