@@ -52,7 +52,7 @@ Dodounawteway=0
 print("No DIGI screen")
 }
 if(httpClk()){
-    if(httpData():left(32):lower():find("error")|httpData():left(32):lower():find("warning")){print(httpData())}else{
+    if(httpData():left(32):lower():find("error")|httpData():left(32):lower():find("warning")){Err=httpData():replace("<b>",""):replace("</b>",""):replace("<br />",""):explode("\n") foreach(I,Str:string=Err){print(Str)}}else{
     ColSToObr = httpData():right(httpData():length()-httpData():left(16):explode(";")[1,string]:length()-1)
     print("PowerBuxoK's Image Writer - writing...; image data: "+"ResX = "+ResX+" RexY = "+ResY)
     setName("PowerBuxoK's Image Writer - writing...; image data: "+"ResX = "+ResX+" RexY = "+ResY)
