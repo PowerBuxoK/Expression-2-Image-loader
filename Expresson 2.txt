@@ -1,7 +1,7 @@
 @name PowerBuxoK's Image Writer
 @inputs 
 @outputs ResX ResY XS Y
-@persist ColSToObr:string HTTP:string E Scr:wirelink ResX ResY Dodounawteway Speed URL:string
+@persist ColSToObr:string HTTP:string E Scr:wirelink ResX ResY Dodounawteway Speed
 @trigger 
 
 interval(20)
@@ -9,12 +9,14 @@ runOnHTTP(1)
 if(first()){
     runOnChat(1)
     noDuplications()
-    ResX=32
-    ResY=16
-    Speed=32
-    ##Options##
-    URL=""#your URL to php
-    ###########
+    ResX=512
+    ResY=512
+    Speed=128
+    Scr=entity():isWeldedTo():wirelink()
+#    HTTP="https://i.postimg.cc/fySQgN5s/f56108e788560d9d7f9b6b2ff2c78f2e.png"#/Жон,Жын,Жын Бурляй
+#    HTTP="https://i.postimg.cc/8z0393JP/eb5caf0ad880b03bf8082da3ee2e718a.png"#/L8'n
+#    HTTP="https://i.postimg.cc/wTkyvjWG/e6c251abe9c6a6a3a02b604727804a85.png"#/Mananox
+#    HTTP="https://i.postimg.cc/fLCmV4hx/imgonline-com-ua-Resize-6cra-VJ58o5.jpg"#/Vzlom Jopi
 ##Funcs##
 function wirelink:initScr (ResX,ResY){
 This[1048574]=0
@@ -38,12 +40,12 @@ if(chatClk(owner())&&owner():lastSaid():left(1)=="&"){
     ResY=owner():lastSaid():replace("&",""):explode(" ")[2,string]:toNumber()
     Scr:initScr(ResX,ResY)
     }
-if(HTTP!=""&&chatClk(owner())&&owner():lastSaid():left(1)=="^"){
+if(HTTP!=""&&(owner():aimEntity():type()=="gmod_wire_digitalscreen")&&chatClk(owner())&&owner():lastSaid():left(1)=="^"){
 if(owner():aimEntity():type()=="gmod_wire_digitalscreen"){
 Scr=owner():aimEntity():wirelink()
 }
-httpRequest(URL+"/?img="+HTTP+"&res="+ResX+"x"+ResY)
-print("Requesting to "+URL+"/?img="+HTTP+"&res="+ResX+"x"+ResY)
+httpRequest("https://powerbuxokshost.000webhostapp.com/?img="+HTTP+"&res="+ResX+"x"+ResY)
+print("Requesting to "+"https://powerbuxokshost.000webhostapp.com/?img="+HTTP+"&res="+ResX+"x"+ResY)
 E=0
 XS=0
 Y=0
@@ -52,25 +54,29 @@ Dodounawteway=0
 print("No DIGI screen")
 }
 if(httpClk()){
-    if(httpData():left(32):lower():find("error")|httpData():left(32):lower():find("warning")){Err=httpData():replace("<b>",""):replace("</b>",""):replace("<br />",""):explode("\n") foreach(I,Str:string=Err){print(Str)}}else{
     ColSToObr = httpData():right(httpData():length()-httpData():left(16):explode(";")[1,string]:length()-1)
-    print("PowerBuxoK's Image Writer - writing...; image data: "+"ResX = "+ResX+" RexY = "+ResY)
+    if(httpData():left(32):lower():find("error")|httpData():left(32):lower():find("warning")){Err=httpData():replace("<b>",""):replace("</b>",""):replace("<br />",""):explode("\n") foreach(I,Str:string=Err){print(Str)}}else{
+    print("[c 150 , 150 , 150]PowerBuxoK's Image Writer[/c] - [c 255 , 0 , 0]writing...[/c]; image data: "+"ResX = "+ResX+" RexY = "+ResY)
     setName("PowerBuxoK's Image Writer - writing...; image data: "+"ResX = "+ResX+" RexY = "+ResY)
     Scr:initScr(max(ResX,ResY),max(ResX,ResY))
     print("Filling "+ResX*ResY+" pixels")
-    timer("dd",200)
-    }
-    }
-if(clk("dd")){
+    Dodounawteway=1
+}}
+if(Dodounawteway){
+    for(I=1,Speed){
 E=E+9
 XS++
-holoCreate(E)
-holoPos(E,entity():toWorld(vec(XS*2,Y*2,0)))
-holoScale(E,vec(0.2))
-holoColor(E,vec(ColSToObr:left(E+3):right(3):toNumber(),ColSToObr:left(E+6):right(3):toNumber(),ColSToObr:left(E+9):right(3):toNumber()))
+Scr:drPx(ResX,XS,Y, vec(ColSToObr:left(E+3):right(3):toNumber(),ColSToObr:left(E+6):right(3):toNumber(),ColSToObr:left(E+9):right(3):toNumber()))
 if(XS>=ResX){
     Y++
     XS=0
     }
-if(!(Y>=ResY)){    setName("PowerBuxoK's Image Writer - writed!; image data: "+"ResX = "+ResX+" RexY = "+ResY)    timer("dd",40)     XS=0 Y=0}}
+if(Y>=ResY){
+    XS=0
+    Y=0
+    Dodounawteway=0
+setName("PowerBuxoK's Image Writer - writed!; image data: "+"ResX = "+ResX+" RexY = "+ResY)
+}
+}
+}
 #[Copyright (c) 2021 PowerBuxoK]#
